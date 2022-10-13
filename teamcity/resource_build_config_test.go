@@ -3,13 +3,14 @@ package teamcity_test
 import (
 	"errors"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"regexp"
 	"strings"
 	"testing"
 
-	api "github.com/cvbarros/go-teamcity/teamcity"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+
+	api "github.com/celestialorb/go-teamcity/teamcity"
 )
 
 func TestAccBuildConfig_Basic(t *testing.T) {
@@ -652,6 +653,24 @@ func TestAccBuildConfig_VcsRoot(t *testing.T) {
 	})
 }
 
+func TestAccBuildConfig_StepContainer(t *testing.T) {
+	var bc api.BuildType
+	resName := "teamcity_build_config.build_config_with_step_container"
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckBuildConfigDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: TestAccBuildConfigurationStepWithContainer,
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckBuildConfigExists(resName, &bc),
+				),
+			},
+		},
+	})
+}
+
 func TestAccBuildConfig_AttachTemplates(t *testing.T) {
 	var bc, t1, t2 api.BuildType
 	var t3 api.BuildType
@@ -1287,5 +1306,23 @@ resource "teamcity_project" "child" {
 resource teamcity_build_config "build_config" {
 	name = "build config"
 	project_id = "${teamcity_project.child.id}"
+}
+`
+
+const TestAccBuildConfigurationStepWithContainer = `
+resource "teamcity_project" "this" {
+	name = "this"
+}
+
+resource teamcity_build_config "build_config_with_step_container" {
+	name = "build_config_with_step_container"
+	project_id = "${teamcity_project.this.id}"
+
+	step {
+		type = "cmd_line"
+		name = "build_script"
+		code = "echo \"Hello Foo\""
+		container = "alpine:3"
+	} 
 }
 `

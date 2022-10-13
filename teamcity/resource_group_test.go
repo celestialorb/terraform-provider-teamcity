@@ -12,7 +12,7 @@ import (
 	"hash/crc32"
 	"regexp"
 
-	api "github.com/cvbarros/go-teamcity/teamcity"
+	api "github.com/celestialorb/go-teamcity/teamcity"
 )
 
 func TestAccGroup_Create(t *testing.T) {

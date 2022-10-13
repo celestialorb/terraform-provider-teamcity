@@ -11,7 +11,7 @@ Motivation:
 
 This project is in need of new maintainers, please see here:  
 https://github.com/cvbarros/go-teamcity/issues/94.  
-https://github.com/cvbarros/terraform-provider-teamcity/issues/113
+https://github.com/celestialorb/terraform-provider-teamcity/issues/113
 
 Installation
 ------------
@@ -40,7 +40,7 @@ Once configured, running `terraform init` will download the provider automatical
 
 ## Binaries (Recommended for Terraform up to 0.12.x)
 Another way to install this provider is to use one of the binary distributions available as 
-[Releases](https://github.com/cvbarros/terraform-provider-teamcity/releases). 
+[Releases](https://github.com/celestialorb/terraform-provider-teamcity/releases). 
 It contains pre-compiled bundles for Linux, MacOS and Windows.
 
 Download and unpack the version for your OS/arch.  
@@ -48,7 +48,7 @@ In the example below, we use MacOS (darwin_amd64) and version `v1.0.1`:
 
 ```bash
 VERSION=v1.0.1
-wget https://github.com/cvbarros/terraform-provider-teamcity/releases/download/$VERSION/terraform-provider-teamcity_darwin_amd64_$VERSION.zip
+wget https://github.com/celestialorb/terraform-provider-teamcity/releases/download/$VERSION/terraform-provider-teamcity_darwin_amd64_$VERSION.zip
 tar -xvf terraform-provider-teamcity_darwin_amd64_$VERSION.zip 
 ```
 

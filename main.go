@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/plugin"
 
-	"github.com/cvbarros/terraform-provider-teamcity/teamcity"
+	"github.com/celestialorb/terraform-provider-teamcity/teamcity"
 )
 
 func main() {

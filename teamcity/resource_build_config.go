@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"strings"
 
-	api "github.com/cvbarros/go-teamcity/teamcity"
+	api "github.com/celestialorb/go-teamcity/teamcity"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/hashcode"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
@@ -129,6 +129,10 @@ func resourceBuildConfig() *schema.Resource {
 							Optional: true,
 						},
 						"code": {
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"container": {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -451,6 +455,7 @@ func resourceBuildConfigRead(d *schema.ResourceData, meta interface{}) error {
 	if err := d.Set("project_id", dt.ProjectID); err != nil {
 		return err
 	}
+
 	err = flattenParameterCollection(d, dt.Parameters)
 	if err != nil {
 		return err
@@ -715,6 +720,7 @@ func flattenBuildStep(s api.Step) (map[string]interface{}, error) {
 	default:
 		return nil, fmt.Errorf("build step type '%s' not supported", s.Type())
 	}
+	// out["container"] = s.GetContainer()
 	out["step_id"] = s.GetID()
 	return out, err
 }
@@ -753,6 +759,7 @@ func flattenBuildStepCmdLine(s *api.StepCommandLine) map[string]interface{} {
 		m["name"] = s.Name
 	}
 	m["type"] = "cmd_line"
+	m["container"] = s.DockerContainerImageID
 
 	return m
 }
@@ -809,6 +816,10 @@ func expandStepCmdLine(dt map[string]interface{}) (*api.StepCommandLine, error) 
 	}
 	if err != nil {
 		return nil, err
+	}
+
+	if v, ok := dt["container"]; ok {
+		s.DockerContainerImageID = v.(string)
 	}
 
 	if v, ok := dt["step_id"]; ok {
@@ -961,6 +972,10 @@ func resourceBuildConfigInstanceResourceV0() *schema.Resource {
 							Optional: true,
 						},
 						"code": {
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"container": {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
