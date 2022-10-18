@@ -76,6 +76,16 @@ github.com/celestialorb/go-teamcity v0.0.0-20221013203151-77b961543101 h1:KAQ7IO
 github.com/celestialorb/go-teamcity v0.0.0-20221013203151-77b961543101/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
 github.com/celestialorb/go-teamcity v0.0.0-20221013211952-9dc7c4776d54 h1:gnLXf+jUvMlKQwQi7tbw+plq0pQmf+Zbim4KQL7YZmo=
 github.com/celestialorb/go-teamcity v0.0.0-20221013211952-9dc7c4776d54/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
+github.com/celestialorb/go-teamcity v0.0.0-20221018170236-5822a00fb112 h1:Z9XwaCshE833Aa1vsgvRl6X2tHipjNmVRF5q27uKNA0=
+github.com/celestialorb/go-teamcity v0.0.0-20221018170236-5822a00fb112/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
+github.com/celestialorb/go-teamcity v0.0.0-20221018170933-f60d3f568f96 h1:2rcIVhZSetUD9sypShQ4h6p5kpGqi2vlol0vjXzconQ=
+github.com/celestialorb/go-teamcity v0.0.0-20221018170933-f60d3f568f96/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
+github.com/celestialorb/go-teamcity v0.0.0-20221018171233-28813cd0cbbd h1:xLebxVHpLegbbKuF7dhejx820InlaMgOs+PF2K7I13k=
+github.com/celestialorb/go-teamcity v0.0.0-20221018171233-28813cd0cbbd/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
+github.com/celestialorb/go-teamcity v0.0.0-20221018182518-10a3e305c1ca h1:6tZhF6Kc+nn/3XpJiAveBoHplBlNQrxme+YUuOp+a4s=
+github.com/celestialorb/go-teamcity v0.0.0-20221018182518-10a3e305c1ca/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
+github.com/celestialorb/go-teamcity v0.0.0-20221018182720-3ac5d5ca1f8d h1:11c+wd3mL2bMoNxTIcouhz/+9I0Vrxxpoem9mdWf3Mg=
+github.com/celestialorb/go-teamcity v0.0.0-20221018182720-3ac5d5ca1f8d/go.mod h1:DxzAtB/vmrVb6mvFxn22PbU7PnRNph2B6nJX+Ndas2E=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/cheggaaa/pb v1.0.27/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXHm81s=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=

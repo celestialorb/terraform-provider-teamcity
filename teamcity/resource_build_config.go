@@ -132,9 +132,25 @@ func resourceBuildConfig() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
-						"container": {
-							Type:     schema.TypeString,
+
+						"container_reference": {
 							Optional: true,
+							Type:     schema.TypeString,
+						},
+						"container_platform": {
+							Default:  api.Any,
+							Optional: true,
+							Type:     schema.TypeString,
+						},
+						"container_pull": {
+							Default:  false,
+							Optional: true,
+							Type:     schema.TypeBool,
+						},
+						"container_additional_arguments": {
+							Default:  "",
+							Optional: true,
+							Type:     schema.TypeString,
 						},
 					},
 				},
@@ -471,7 +487,7 @@ func resourceBuildConfigRead(d *schema.ResourceData, meta interface{}) error {
 
 	vcsRoots := dt.VcsRootEntries
 
-	if vcsRoots != nil && len(vcsRoots) > 0 {
+	if len(vcsRoots) > 0 {
 		var vcsToSave []map[string]interface{}
 		for _, el := range vcsRoots {
 			m := make(map[string]interface{})
@@ -489,7 +505,7 @@ func resourceBuildConfigRead(d *schema.ResourceData, meta interface{}) error {
 	if err != nil {
 		return err
 	}
-	if steps != nil && len(steps) > 0 {
+	if len(steps) > 0 {
 		var stepsToSave []map[string]interface{}
 		for _, el := range steps {
 			l, err := flattenBuildStep(el)
@@ -720,7 +736,6 @@ func flattenBuildStep(s api.Step) (map[string]interface{}, error) {
 	default:
 		return nil, fmt.Errorf("build step type '%s' not supported", s.Type())
 	}
-	// out["container"] = s.GetContainer()
 	out["step_id"] = s.GetID()
 	return out, err
 }
@@ -759,7 +774,11 @@ func flattenBuildStepCmdLine(s *api.StepCommandLine) map[string]interface{} {
 		m["name"] = s.Name
 	}
 	m["type"] = "cmd_line"
-	m["container"] = s.DockerContainerImageID
+
+	m["container_reference"] = s.Container.ImageReference
+	m["container_platform"] = string(s.Container.ImagePlatform)
+	m["container_pull"] = s.Container.ExplicitlyPullImage
+	m["container_additional_arguments"] = s.Container.AdditionalContainerRunArguments
 
 	return m
 }
@@ -818,8 +837,20 @@ func expandStepCmdLine(dt map[string]interface{}) (*api.StepCommandLine, error) 
 		return nil, err
 	}
 
-	if v, ok := dt["container"]; ok {
-		s.DockerContainerImageID = v.(string)
+	if v, ok := dt["container_reference"]; ok {
+		s.Container.ImageReference = v.(string)
+	}
+
+	if v, ok := dt["container_platform"]; ok {
+		s.Container.ImagePlatform = api.ContainerPlatform(v.(string))
+	}
+
+	if v, ok := dt["container_pull"]; ok {
+		s.Container.ExplicitlyPullImage = v.(bool)
+	}
+
+	if v, ok := dt["container_additional_arguments"]; ok {
+		s.Container.AdditionalContainerRunArguments = v.(string)
 	}
 
 	if v, ok := dt["step_id"]; ok {

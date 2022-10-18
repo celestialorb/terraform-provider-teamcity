@@ -3,7 +3,7 @@ module github.com/celestialorb/terraform-provider-teamcity
 go 1.19
 
 require (
-	github.com/celestialorb/go-teamcity v0.0.0-20221013211952-9dc7c4776d54
+	github.com/celestialorb/go-teamcity v0.0.0-20221018182720-3ac5d5ca1f8d
 	github.com/hashicorp/terraform-plugin-sdk v1.17.2
 )
 

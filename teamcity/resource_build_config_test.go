@@ -1322,7 +1322,11 @@ resource teamcity_build_config "build_config_with_step_container" {
 		type = "cmd_line"
 		name = "build_script"
 		code = "echo \"Hello Foo\""
-		container = "alpine:3"
+		
+		container_reference            = "alpine:3"
+		container_platform             = "linux"
+		container_pull                 = true
+		container_additional_arguments = "-it"
 	} 
 }
 `
