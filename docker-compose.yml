@@ -2,4 +2,8 @@ services:
   teamcity:
     image: jetbrains/teamcity-server:latest
     ports:
-      - 8111:8111
+      - 8112:8111
+    volumes:
+    - data:/data/teamcity_server/datadir
+volumes:
+  data: {}
